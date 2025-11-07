@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<Layout title="Blog - Ripon Kumar Saha">
+  <main class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold mb-12">Blog</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {sortedPosts.map((post) => (
+          <article class="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col h-full">
+            <a href={`/blog/${post.slug}`} class="block">
+              {post.data.image && (
+                <div class="h-48 bg-gray-100">
+                  <img 
+                    src={post.data.image.startsWith('/') ? post.data.image : `/${post.data.image}`}
+                    alt={post.data.title} 
+                    class="w-full h-full object-cover hover:opacity-90 transition-opacity"
+                  />
+                </div>
+              )}
+            </a>
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {formatDate(post.data.pubDate)}
+                </time>
+                <span>•</span>
+                <span>{post.data.author}</span>
+              </div>
+              <h2 class="text-xl font-bold mb-3 flex-none">
+                <a 
+                  href={`/blog/${post.slug}`} 
+                  class="text-gray-900 hover:text-primary transition-colors"
+                >
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="text-gray-600 mb-4 flex-1 line-clamp-3">{post.data.description}</p>
+              {post.data.tags && (
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  {post.data.tags.map((tag) => (
+                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>

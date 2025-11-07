@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ExpertiseSection from '../components/ExpertiseSection.astro';
+import TechnicalSkills from '../components/TechnicalSkills.astro';
+
+const publications = [
+  {
+    title:"SH-SAS: An Implicit Neural Representation for Complex Spherical-Harmonic Scattering Fields for 3D Synthetic Aperture Sonar",
+    authors: "Omkar Vengurlekar, Adithya Pediredla, Suren Jayasuriya",
+    venue: "13th International Conference on 3D Vision 2026 (3DV)"
+  },
+  {
+    title: "ToFGS: Temporally-Resolved Inverse Rendering with Gaussian Splatting for Time-of-Flight",
+    authors: "Omkar Vengurlekar, Aaron Saju Augustine, Suren Jayasuriya",
+    venue: "CVPR 2025 - 2nd Workshop on Neural Fields Beyond Conventional Cameras"
+  },
+  {
+    title: "Z-Splat: Z-Axis Gaussian Splatting for Camera-Sonar Fusion",
+    authors: "Ziyuan Qu, Omkar Vengurlekar, Mohamad Qadri, Kevin Zhang, Michael Kaess, Christopher Metzler, Suren Jayasuriya, Adithya Pediredla",
+    venue: "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)"
+  },
+  {
+    title: "A Hybrid ViT-CNN Architecture for Volumetric Target Classification with Sub-Bottom SAS Data",
+    authors: "Gregory D Vetaw, Omkar S Vengurlekar, Daniel C Brown, Suren Jayasuriya",
+    venue: "OCEANS 2024-Halifax"
+  },
+  {
+    title: "RSSI filtering methods applied to localization using Bluetooth low energy",
+    authors: "Aditya Kaduskar*, Omkar Vengurlekar*, Varunraj Shinde*",
+    venue: "International Journal of Recent Technology and Engineering (IJRTE)"
+  }
+];
+
+const awards = [
+
+  {
+    title: "Ira Fulton Fellowship",
+    event: "Arizona State University ECEE",
+    details: "Highly competitive fellowship for Ph.D. students",
+    year: "2025"
+  },
+  {
+    title: "Travel Grant",
+    event: "ACM SIGGRAPH",
+    details: "Awarded for participating at SIGGRAPH 2024, Denver",
+    year: "2024"
+  },
+  {
+    title: "Travel Grant",
+    event: "IEEE ICCP",
+    details: "Awarded for presenting at ICCP 2024, Switzerland",
+    year: "2024"
+  }
+];
+
+---
+
+<Layout title="Omkar Shailendra Vengurlekar - Computer Vision and Computer Graphics Researcher">
+  <main>
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd`'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Text Content -->
+          <div class="space-y-8">
+            <div class="space-y-2">
+              <h1 class="text-6xl font-bold text-gray-900 leading-tight">
+                Hi, I'm <span class="text-primary">Omkar Vengurlekar</span>
+              </h1>
+              <p class="text-xl text-gray-600 font-medium">
+                Second Year Ph.D. Student <br> Computer Engineering at Arizona State University
+              </p>
+            </div>
+
+            <div class="prose prose-lg text-gray-600 space-y-6">
+              <p class="leading-normal">
+                <!-- My research expertise lies at the intersection of deep learning and computational imaging, where I develop solutions for complex computer vision challenges. I specialize in designing neural architectures for image restoration, object detection, and generative modeling, with a particular focus on real-world applications in challenging atmospheric conditions. -->
+                I am a Second-year Ph.D. student in Computer Engineering at Arizona State University. My research interests lie in computer vision, computer graphics, parallel-computing, and deep learning. I am passionate about developing robust and efficient algorithms for real-world applications. I specialize in designing algorithms for Implicit Neural representation, Novel View Synthesis, Volumetric Rendering and 3D Reconstruction. I am particularly interested in developing solutions for complex computer vision challenges using deep learning, computational imaging and rendering techniques.
+</p>
+            
+              <p class="leading-normal">
+                <!-- I've gained valuable industry experience through internships at Kitware Inc. (transformer-based video understanding), Alphacore Inc. (physics-informed deep learning), and Lightsense Technology Inc. (AI for Covid-19 detection using spectral signatures). My work combines classical computer vision with modern deep learning techniques for robust real-world solutions. -->
+                I have gained valuable research experience through visiting Dartmouth College (Computer Science) as a visiting Researcher, where I worked on brainstorming and developing novel algorithms for None-Line-of-Sight Imaginging and 3D Reconstruction. I have also gained industry experience through insternship at Rain AI where I worked on developing efficient algorithms using GPU based parallel computing which helps me to developing robust and low latency algorithms for rendering and image processing applications.
+
+
+              </p>
+
+              <div class="flex items-center space-x-6 pt-6">
+                <a 
+                  href="/about" 
+                  class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
+                >
+                  Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+                <div class="flex space-x-4">
+                  <a 
+                    href="mailto:ovengurl@asu.edu" 
+                    class="text-gray-600 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-100"
+                  >
+                    <i class="fas fa-envelope text-xl"></i>
+                  </a>
+                  <a 
+                    href="tel:623-283-0227" 
+                    class="text-gray-600 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-100"
+                  >
+                    <i class="fas fa-phone text-xl"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Image -->
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl transform rotate-6"></div>
+            <div class="relative aspect-square overflow-hidden rounded-2xl shadow-2xl transform hover:-translate-y-2 transition-transform duration-300">
+              <img 
+                src="/images/OmkarVengurlekar.JPEG" 
+                alt="Omkar Shailendra Vengurlekar"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ExpertiseSection />
+    <TechnicalSkills />
+
+    <!-- Publications Section -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-8">Recent Publications</h2>
+        <div class="grid gap-6">
+          {publications.map((pub) => (
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-2">{pub.title}</h3>
+              <p class="text-gray-600 mb-2">{pub.authors}</p>
+              <p class="text-primary font-medium">{pub.venue}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-8">Awards & Recognition</h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          {awards.map((award) => (
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <h3 class="text-xl font-semibold mb-2">{award.title}</h3>
+              <p class="text-gray-600 mb-2">{award.event}</p>
+              {award.details && <p class="text-sm text-gray-500">{award.details}</p>}
+              <p class="text-primary font-medium mt-2">{award.year}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

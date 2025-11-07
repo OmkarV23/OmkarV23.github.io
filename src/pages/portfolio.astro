@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const projects: CollectionEntry<'projects'>[] = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => {
+  const dateA = new Date(a.data.period.split('-')[1] || a.data.period);
+  const dateB = new Date(b.data.period.split('-')[1] || b.data.period);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<Layout title="Portfolio - Omkar Shailendra Vengurlekar">
+  <main class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold mb-12">Portfolio</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {sortedProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            body={project.body}
+            type={`${project.data.type} • ${project.data.period}`}
+            image={project.data.image}
+            slug={project.slug}
+          />
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>

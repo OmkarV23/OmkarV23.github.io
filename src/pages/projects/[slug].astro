@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title={`${project.title} - Portfolio`}>
+  <main class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <a href="/portfolio" class="text-primary hover:text-primary-dark">← Back to Portfolio</a>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="w-full max-h-[600px] bg-gray-100 relative overflow-hidden">
+          <img 
+            src={project.data.image} 
+            alt={project.data.title} 
+            class="w-full h-auto object-contain mx-auto"
+          />
+        </div>
+        
+        <div class="p-8">
+          <div class="mb-6">
+            <span class="text-primary text-sm font-medium">{`${project.data.type} • ${project.data.period}`}</span>
+            <h1 class="text-3xl font-bold mt-2">{project.data.title}</h1>
+          </div>
+
+          <div class="prose prose-base max-w-none prose-headings:text-gray-900 prose-a:text-primary hover:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline">
+            <Content />
+            
+            <h2 class="text-2xl font-semibold mt-8 mb-4">Technologies Used</h2>
+            <div class="flex flex-wrap gap-2 mb-8">
+              {project.data.technologies.map(tech => (
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{tech}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,102 @@
+---
+const expertise = {
+  'Computer Vision': {
+    icon: 'fa-eye',
+    skills: [
+      'Multi-View Geometry',
+      'Spatial Awareness in Diffusion Models through priors',
+      'Image Segmentation',
+      'Object Detection',
+      'Image Classification',
+      'Medical Image Analysis',
+    ]
+  },
+  'Computer Graphics': {
+    icon: 'fa-cube',
+    skills: [
+      'Implicit Neural Representation',
+      'Complex Signal Representation with Spherical Harmonics',
+      'Novel View Synthesis',
+      'Volumetric Rendering',
+      '3D Reconstruction',
+      'Rendering Techniques',
+    ]
+  },
+  'Machine Learning': {
+    icon: 'fa-brain',
+    skills: [
+      'Deep Learning Model Development',
+      'CNN, RNN, LSTM Architectures',
+      'Fourier Neural Operators',
+      'Physics-based Deep Learning',
+      'Transfer Learning & Fine-tuning',
+      'Multimodal Learning'
+    ]
+  },
+  'Computational Imaging': {
+    icon: 'fa-camera',
+    skills: [
+      'RAW Image Processing',
+      'HDR Imaging',
+      'Super-Resolution',
+      'Doppler Imaging Techniques',
+      'Automated Photo Enhancement',
+      'Multi-Camera System Analysis'
+    ]
+  },
+  // 'Intelligent Systems': {
+  //   icon: 'fa-robot',
+  //   skills: [
+  //     'Biomedical Image Processing',
+  //     'Spectral Data Analysis',
+  //     'AI-assisted Diagnostics',
+  //     'Environmental Monitoring Systems',
+  //     'Long-range Observation Systems'
+  //   ]
+  // },
+  'AI Research & Development': {
+    icon: 'fa-lightbulb',
+    skills: [
+      'Novel Algorithm Design',
+      'Research Paper Publication',
+      'Experimental Setup & Data Collection',
+      'Performance Optimization',
+      'Cross-disciplinary AI Applications'
+    ]
+  },
+  'High-Performance Computing': {
+    icon: 'fa-microchip',
+    skills: [
+      'GPU-accelerated Computing',
+      'Parallel Processing',
+      'Large-scale Data Analysis',
+      'Optimization for Real-time Applications',
+      'Cloud Computing Integration'
+    ]
+  }
+};
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold mb-12">Areas of Expertise</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {Object.entries(expertise).map(([category, { icon, skills }]) => (
+        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-center mb-4">
+            <i class={`fas ${icon} text-2xl text-primary mr-3`}></i>
+            <h3 class="text-xl font-semibold">{category}</h3>
+          </div>
+          <ul class="space-y-2">
+            {skills.map(skill => (
+              <li class="flex items-start text-gray-700">
+                <span class="text-primary mr-2">•</span>
+                <span>{skill}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

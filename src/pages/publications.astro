@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const publications = [
+{
+    title:"SH-SAS: An Implicit Neural Representation for Complex Spherical-Harmonic Scattering Fields for 3D Synthetic Aperture Sonar",
+    authors: "Omkar Vengurlekar, Adithya Pediredla, Suren Jayasuriya",
+    venue: "13th International Conference on 3D Vision 2026 (3DV)"
+  },
+  {
+    title: "Z-Splat: Z-Axis Gaussian Splatting for Camera-Sonar Fusion",
+    authors: "Ziyuan Qu, Omkar Vengurlekar, Mohamad Qadri, Kevin Zhang, Michael Kaess, Christopher Metzler, Suren Jayasuriya, Adithya Pediredla",
+    venue: "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)"
+  },
+  {
+    title: "A Hybrid ViT-CNN Architecture for Volumetric Target Classification with Sub-Bottom SAS Data",
+    authors: "Gregory D Vetaw, Omkar S Vengurlekar, Daniel C Brown, Suren Jayasuriya",
+    venue: "OCEANS 2024-Halifax"
+  },
+  {
+    title: "RSSI filtering methods applied to localization using Bluetooth low energy",
+    authors: "Aditya Kaduskar*, Omkar Vengurlekar*, Varunraj Shinde*",
+    venue: "International Journal of Recent Technology and Engineering (IJRTE)"
+  }
+];
+---
+
+<Layout title="Publications - Omkar Shailendra Vengurlekar">
+  <main class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold mb-12">Publications</h1>
+      
+      <div class="space-y-6">
+        {publications.map((pub) => (
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold mb-3">{pub.title}</h3>
+            <p class="text-gray-600 mb-2">{pub.authors}</p>
+            <p class="text-primary font-medium">{pub.venue}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const education = [
+  {
+    school: "Arizona State University (ASU)",
+    degree: "PhD, Electrical and Computer Engineering",
+    period: "May 2024 - Present",
+    supervisor: "Supervised by Dr. Suren Jayasuriya (Imaging Lyceum Lab)",
+    details: [
+      "Research on Computational Imaging and Rendering Techniques",
+      "Working on 3D Reconstruction using Gaussian methods and Deep Learning using multi-modal data"
+    ],
+    courses: [
+      { code: "CSE 570", name: "Advanced Computer Graphics" },
+      { code: "CSE 551", name: "Foundations of Algorithms" },
+      { code: "EEE 554", name: "Probability & Random Processes" },
+      { code: "EEE 598", name: "Reinforcement Learning" },
+    ]
+  },
+  {
+    school: "Arizona State University (ASU)",
+    degree: "M.S. in Robotics and Artificial Intelligence (CS)",
+    period: "August 2022 - May 2024",
+    supervisor: "Supervised by Dr. Suren Jayasuriya (Imaging Lyceum Lab)",
+    details: [
+    "Explored NeRF for 3D Reconstruction using Time-of-Flight sensors",
+    "Collaborated with Dartmouth College and published our work in IEEE TPAMI on Camera-Sonar fusion for Gaussian position correction (Z-Splat)",
+    ],
+    courses: [
+      { code: "CSE 598", name: "Perception in Robotics"},
+      { code: "CSE 574", name: "Statistical Machine Learning"},
+      { code: "CSE 575", name: "Artificial Intelligence"},
+      { code: "EEE 515", name: "Machine Vision and Pattern Recognition" },
+      { code: "EEE 598", name: "Physics-based Computer Vision" },
+      { code: "EEE 598", name: "Remote Sensing and Synthetic Aperture Imaging" }
+    ]
+  }
+  // },
+  // {
+  //   school: "University of Pune",
+  //   degree: "B.Tech in Electronics and Telecommunication",
+  //   period: "August 2016 - May 2020",
+  //   details: [
+  //     "Thesis on real-time Earliest deadline first algorithm",
+  //     "Completed various projects including Bengali language speaker, Assignment maker, and OpenGL GUI games"
+  //   ]
+  // }
+];
+
+// const honors = [
+//   {
+//     title: "University Grant Fellowship",
+//     organization: "Arizona State University ECEE",
+//     details: "Research Excellence Award ($12,000)",
+//     year: "2025"
+//   },
+//   {
+//     title: "Graduate Research Day Award",
+//     organization: "Arizona State University",
+//     details: "Winner in Information Sciences (PhD Category)",
+//     year: "2024"
+//   },
+//   {
+//     title: "South Korean Government Scholarship",
+//     organization: "GIST",
+//     details: "Full scholarship for Master's studies",
+//     year: "2018-2020"
+//   },
+//   {
+//     title: "BuildwithAI Hackathon Winner",
+//     organization: "Global Competition",
+//     details: "Twitter pandemic information bias project (4,000 participants, 70 countries)",
+//     year: "2020"
+//   },
+//   {
+//     title: "Most Active Online Attendee",
+//     organization: "European Conference on Computer Vision",
+//     year: "2020"
+//   },
+//   {
+//     title: "Champion of the Champions",
+//     organization: "Regional Division Math Olympiad Bangladesh",
+//     details: "Including several districts",
+//     year: "2009"
+//   },
+//   {
+//     title: "First Runners up",
+//     organization: "National Math Olympiad Bangladesh",
+//     year: "2008"
+//   },
+// ];
+
+// const additionalInfo = [
+//   {
+//     category: "Academic Service",
+//     details: "Reviewer for WACV, WACI, IEEE Access, Journal of Optics Express, and Applied Optics"
+//   },
+//   {
+//     category: "Volunteering",
+//     details: "Co-Organizer, cholopaltai.org (2018); Programming Instructor, Jessore University (2014 - 2015)"
+//   }
+// ];
+---
+
+<Layout title="About - Omkar Shailendra Vengurlekar">
+  <main class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold mb-12">About Me</h1>
+      
+      <!-- <div class="prose max-w-none mb-16">
+        <p class="text-lg text-gray-600 mb-6">
+          I am currently a Ph.D. student at Arizona State University, specializing in Computer Vision, Machine Learning, and Computational Photography within the Imaging Lyceum Lab, under the guidance of Dr. Suren Jayasuriya. My research is focused on developing advanced deep learning models for dynamic scene restoration, particularly addressing the challenges posed by atmospheric turbulence in Ultra-Zoom and astrophotography applications.
+        </p>
+        <p class="text-lg text-gray-600">
+          Prior to my Ph.D., I completed an M.S. at the NeuroPhotonics Lab, GIST in South Korea under Professor Euiheon Chung. My research focused on deep learning-based automated assessment of infrared eyelid images and reflection removal using GANs.
+        </p>
+      </div> -->
+
+      <h2 class="text-3xl font-bold mb-8">Education</h2>
+      <div class="space-y-8 mb-16">
+        {education.map((edu) => (
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold text-primary">{edu.school}</h3>
+            <p class="text-lg font-medium mt-2">{edu.degree}</p>
+            <p class="text-gray-500 mt-1">{edu.period}</p>
+            {edu.supervisor && (
+              <p class="text-gray-600 mt-2 italic">{edu.supervisor}</p>
+            )}
+            <ul class="mt-4 space-y-2">
+              {edu.details.map((detail) => (
+                <li class="text-gray-600">• {detail}</li>
+              ))}
+            </ul>
+            {edu.courses && (
+              <div class="mt-6">
+                <h4 class="text-lg font-semibold mb-3">Relevant Courses</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {edu.courses.map((course) => (
+                    <div class="bg-gray-50 p-2 rounded">
+                      <span class="font-medium text-primary">{course.code}</span>
+                      <span class="mx-2">-</span>
+                      <span class="text-gray-700">{course.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- <h2 class="text-3xl font-bold mb-8">Honors & Awards</h2>
+      <div class="grid md:grid-cols-2 gap-6 mb-16">
+        {honors.map((honor) => (
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold text-primary">{honor.title}</h3>
+            <p class="text-gray-700 mt-2">{honor.organization}</p>
+            {honor.details && <p class="text-gray-600 mt-1">{honor.details}</p>}
+            <p class="text-primary font-medium mt-2">{honor.year}</p>
+          </div>
+        ))}
+      </div> -->
+
+      <!-- <h2 class="text-3xl font-bold mb-8">Additional Information</h2>
+      <div class="space-y-6">
+        {additionalInfo.map((info) => (
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold text-primary mb-3">{info.category}</h3>
+            <p class="text-gray-600">{info.details}</p>
+          </div>
+        ))}
+      </div>
+    </div> -->
+  </main>
+</Layout>

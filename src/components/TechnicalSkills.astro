@@ -1,0 +1,114 @@
+---
+const skillsWithIcons = {
+  'Programming Languages': {
+    icon: 'fa-code',
+    skills: [
+      { name: 'Python', icon: 'fab fa-python' },
+      { name: 'C++', icon: 'fas fa-plus' },
+      { name: 'C', icon: 'fas fa-copyright' },
+      { name: 'CUDA', icon: 'fas fa-code' },
+      { name: 'R', icon: 'fas fa-project-diagram' },
+      { name: 'MATLAB', icon: 'fas fa-square-root-alt' },
+      { name: 'Java', icon: 'fab fa-java' },
+      { name: 'Bash', icon: 'fas fa-terminal' }
+    ],
+    color: 'from-blue-500 to-blue-600'
+  },
+  'Frameworks & Libraries': {
+    icon: 'fa-layer-group',
+    skills: [
+      { name: 'PyTorch', icon: 'fas fa-fire' },
+      { name: 'Keras', icon: 'fas fa-brain' },
+      { name: 'TensorFlow', icon: 'fas fa-network-wired' },
+      { name: 'Optix', icon: 'fas fa-microchip' },
+      { name: 'OpenGL', icon: 'fas fa-cube' },
+      { name: 'Fast.AI', icon: 'fas fa-bolt' },
+      { name: 'OpenCV', icon: 'fas fa-eye' },
+      { name: 'Scikit', icon: 'fas fa-cogs' },
+      { name: 'NLTK', icon: 'fas fa-language' },
+      { name: 'NumPy', icon: 'fas fa-calculator' },
+      { name: 'Pandas', icon: 'fas fa-table' },
+      { name: 'Flask', icon: 'fas fa-flask' }
+    ],
+    color: 'from-purple-500 to-purple-600'
+  },
+'Machine Learning & AI': {
+  icon: 'fa-brain',
+  skills: [
+    { name: 'CNN', icon: 'fas fa-project-diagram' },
+    { name: 'Transformers', icon: 'fas fa-robot' },
+    { name: 'RNN', icon: 'fas fa-recycle' },
+    { name: 'LSTM', icon: 'fas fa-memory' },
+    { name: 'GAN', icon: 'fas fa-random' },
+    { name: 'FCN', icon: 'fas fa-network-wired' },
+    { name: 'Diffusion Models', icon: 'fas fa-atom' },
+    { name: 'VAE', icon: 'fas fa-compress-arrows-alt' },
+    { name: 'KAN', icon: 'fas fa-network-wired' }
+  ],
+  color: 'from-green-500 to-green-600'
+},
+
+  'Data Visualization': {
+    icon: 'fa-chart-line',
+    skills: [
+      { name: 'Tableau', icon: 'fas fa-chart-bar' },
+      { name: 'Microsoft PowerBI', icon: 'fas fa-chart-pie' },
+      { name: 'Seaborn', icon: 'fas fa-wave-square' },
+      { name: 'Origin-Pro', icon: 'fas fa-chart-area' },
+      { name: 'GraphPad', icon: 'fas fa-chart-line' }
+    ],
+    color: 'from-yellow-500 to-yellow-600'
+  },
+  'High-Performance Computing': {
+    icon: 'fa-microchip',
+    skills: [
+      { name: 'Batch Scripting', icon: 'fas fa-terminal' },
+      { name: 'GPU Clusters', icon: 'fas fa-microchip' },
+      { name: 'Python Multi-Processing', icon: 'fas fa-network-wired' },
+      { name: 'Dask', icon: 'fas fa-tasks' },
+      { name: 'Cython', icon: 'fas fa-bolt' }
+    ],
+    color: 'from-red-500 to-red-600'
+  },
+  'Other Tools': {
+    icon: 'fa-tools',
+    skills: [
+      { name: 'Git', icon: 'fab fa-git-alt' },
+      { name: 'Docker', icon: 'fab fa-docker' },
+      { name: 'Unreal Engine', icon: 'fas fa-gamepad' },
+      { name: 'Blender', icon: 'fas fa-cube' },
+      { name: 'LaTeX', icon: 'fas fa-superscript' }
+
+    ],
+    color: 'from-indigo-500 to-indigo-600'
+  }
+};
+---
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold mb-12">Technical Skills</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {Object.entries(skillsWithIcons).map(([category, { icon, skills, color }]) => (
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class={`bg-gradient-to-r ${color} p-4 text-white`}>
+            <div class="flex items-center">
+              <i class={`fas ${icon} text-2xl mr-3`}></i>
+              <h3 class="text-xl font-semibold">{category}</h3>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex flex-wrap gap-2">
+              {skills.map(skill => (
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors flex items-center gap-2">
+                  <i class={`${skill.icon} text-primary`}></i>
+                  {skill.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
