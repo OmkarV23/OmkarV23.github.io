@@ -3,5 +3,6 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 
 export default defineConfig({
+  site: 'https://OmkarV23.github.io',
   integrations: [tailwind(), react()]
 });
