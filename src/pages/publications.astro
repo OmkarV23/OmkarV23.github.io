@@ -6,6 +6,7 @@ const publications = [
     title:"SH-SAS: An Implicit Neural Representation for Complex Spherical-Harmonic Scattering Fields for 3D Synthetic Aperture Sonar",
     authors: "Omkar Vengurlekar, Adithya Pediredla, Suren Jayasuriya",
     venue: "13th International Conference on 3D Vision 2026 (3DV)",
+    presentation: 'Oral',
     links: {
       code: 'https://github.com/OmkarV23/SH-SAS',
       paper: 'https://www.arxiv.org/abs/2509.11087',
@@ -61,61 +62,66 @@ const publications = [
           <div class="bg-white p-6 rounded-lg shadow-sm">
             <h3 class="text-xl font-semibold mb-3">{pub.title}</h3>
             <p class="text-gray-600 mb-2">{pub.authors}</p>
-            <p class="text-primary font-medium">{pub.venue}</p>
-                        {pub.links && (
-                <div class="flex flex-wrap gap-3 mt-4">
-                  {pub.links.code && (
-                    <a
-                      href={pub.links.code}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Code
-                    </a>
-                  )}
-                  {pub.links.paper && (
-                    <a
-                      href={pub.links.paper}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Paper
-                    </a>
-                  )}
-                  {pub.links.video && (
-                    <a
-                      href={pub.links.video}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Video
-                    </a>
-                  )}
-                  {pub.links.website && (
-                    <a
-                      href={pub.links.website}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Website
-                    </a>
-                  )}
-                  {pub.links.data && (
-                    <a
-                      href={pub.links.data}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Data
-                    </a>
-                  )}
-                </div>
+            <p class="text-primary font-medium">
+              {pub.venue}
+              {pub.presentation && (
+                <span class="italic text-sm text-gray-600 ml-2">({pub.presentation})</span>
               )}
+            </p>
+            {pub.links && (
+              <div class="flex flex-wrap gap-3 mt-4">
+                {pub.links.code && (
+                  <a
+                    href={pub.links.code}
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Code
+                  </a>
+                )}
+                {pub.links.paper && (
+                  <a
+                    href={pub.links.paper}
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Paper
+                  </a>
+                )}
+                {pub.links.video && (
+                  <a
+                    href={pub.links.video}
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Video
+                  </a>
+                )}
+                {pub.links.website && (
+                  <a
+                    href={pub.links.website}
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Website
+                  </a>
+                )}
+                {pub.links.data && (
+                  <a
+                    href={pub.links.data}
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Data
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -8,6 +8,7 @@ const publications = [
     title:"SH-SAS: An Implicit Neural Representation for Complex Spherical-Harmonic Scattering Fields for 3D Synthetic Aperture Sonar",
     authors: "Omkar Vengurlekar, Adithya Pediredla, Suren Jayasuriya",
     venue: "13th International Conference on 3D Vision 2026 (3DV)",
+    presentation: 'Oral',
     links: {
       code: 'https://github.com/OmkarV23/SH-SAS',
       paper: 'https://www.arxiv.org/abs/2509.11087',
@@ -163,7 +164,12 @@ const awards = [
             <div class="bg-gray-50 p-6 rounded-lg">
               <h3 class="text-xl font-semibold mb-2">{pub.title}</h3>
               <p class="text-gray-600 mb-2">{pub.authors}</p>
-              <p class="text-primary font-medium">{pub.venue}</p>
+              <p class="text-primary font-medium">
+                {pub.venue}
+                {pub.presentation && (
+                  <span class="italic text-sm text-gray-600 ml-2">({pub.presentation})</span>
+                )}
+              </p>
               {pub.links && (
                 <div class="flex flex-wrap gap-3 mt-4">
                   {pub.links.code && (
