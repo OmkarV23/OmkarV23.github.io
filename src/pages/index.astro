@@ -7,27 +7,48 @@ const publications = [
   {
     title:"SH-SAS: An Implicit Neural Representation for Complex Spherical-Harmonic Scattering Fields for 3D Synthetic Aperture Sonar",
     authors: "Omkar Vengurlekar, Adithya Pediredla, Suren Jayasuriya",
-    venue: "13th International Conference on 3D Vision 2026 (3DV)"
+    venue: "13th International Conference on 3D Vision 2026 (3DV)",
+    links: {
+      code: 'https://github.com/OmkarV23/SH-SAS',
+      paper: 'https://www.arxiv.org/abs/2509.11087',
+      video: 'https://drive.google.com/file/d/1IMgEknGVkRSvuteTG90Xd_XO35C034wi/view',
+      website: 'https://omkarv23.github.io/SH-SAS-website/'
+    }
   },
   {
     title: "ToFGS: Temporally-Resolved Inverse Rendering with Gaussian Splatting for Time-of-Flight",
     authors: "Omkar Vengurlekar, Aaron Saju Augustine, Suren Jayasuriya",
-    venue: "CVPR 2025 - 2nd Workshop on Neural Fields Beyond Conventional Cameras"
+    venue: "CVPR 2025 - 2nd Workshop on Neural Fields Beyond Conventional Cameras",
+    links: {
+      paper: 'https://drive.google.com/file/d/1hjN90hH1vaXINQ8U5NgRwn2PIY7cbuQ-/view?usp=drive_link'
+    }
   },
   {
     title: "Z-Splat: Z-Axis Gaussian Splatting for Camera-Sonar Fusion",
     authors: "Ziyuan Qu, Omkar Vengurlekar, Mohamad Qadri, Kevin Zhang, Michael Kaess, Christopher Metzler, Suren Jayasuriya, Adithya Pediredla",
-    venue: "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)"
+    venue: "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)",
+    links: {
+      code: 'https://github.com/QuintonQu/gaussian-splatting-with-depth/tree/gs-depth-main',
+      paper: 'https://arxiv.org/pdf/2404.04687.pdf',
+      data: 'https://drive.google.com/drive/folders/1R1uYa-h4ksr5HuNJ80vgUIKz1qGqF3JV?usp=drive_link',
+      website: 'https://quintonqu.github.io/z-splat-website/'
+    }
   },
   {
     title: "A Hybrid ViT-CNN Architecture for Volumetric Target Classification with Sub-Bottom SAS Data",
     authors: "Gregory D Vetaw, Omkar S Vengurlekar, Daniel C Brown, Suren Jayasuriya",
-    venue: "OCEANS 2024-Halifax"
+    venue: "IEEE OCEANS 2024-Halifax",
+    links: {
+      paper: 'https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10754426'
+    }
   },
   {
     title: "RSSI filtering methods applied to localization using Bluetooth low energy",
     authors: "Aditya Kaduskar*, Omkar Vengurlekar*, Varunraj Shinde*",
-    venue: "International Journal of Recent Technology and Engineering (IJRTE)"
+    venue: "International Journal of Recent Technology and Engineering (IJRTE)",
+    links: {
+      paper: 'https://www.researchgate.net/publication/363649251_RSSI_Filtering_Methods_Applied_to_Localization_using_Bluetooth_Low_Energy'
+    }
   }
 ];
 
@@ -133,9 +154,6 @@ const awards = [
       </div>
     </div>
 
-    <ExpertiseSection />
-    <TechnicalSkills />
-
     <!-- Publications Section -->
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,11 +164,68 @@ const awards = [
               <h3 class="text-xl font-semibold mb-2">{pub.title}</h3>
               <p class="text-gray-600 mb-2">{pub.authors}</p>
               <p class="text-primary font-medium">{pub.venue}</p>
+              {pub.links && (
+                <div class="flex flex-wrap gap-3 mt-4">
+                  {pub.links.code && (
+                    <a
+                      href={pub.links.code}
+                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Code
+                    </a>
+                  )}
+                  {pub.links.paper && (
+                    <a
+                      href={pub.links.paper}
+                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Paper
+                    </a>
+                  )}
+                  {pub.links.video && (
+                    <a
+                      href={pub.links.video}
+                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Video
+                    </a>
+                  )}
+                  {pub.links.website && (
+                    <a
+                      href={pub.links.website}
+                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Website
+                    </a>
+                  )}
+                  {pub.links.data && (
+                    <a
+                      href={pub.links.data}
+                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Data
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
     </section>
+
+    <ExpertiseSection />
+    <TechnicalSkills />
 
     <!-- Awards Section -->
     <section class="py-16 bg-gray-50">
