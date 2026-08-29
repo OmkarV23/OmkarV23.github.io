@@ -1,245 +1,246 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ExpertiseSection from '../components/ExpertiseSection.astro';
-import TechnicalSkills from '../components/TechnicalSkills.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import PatentCard from '../components/PatentCard.astro';
+import { publications } from '../data/publications';
+import { patents } from '../data/patents';
 
-const publications = [
+const featuredPublications = publications.filter((publication) => publication.featured);
+
+const researchDomains = [
   {
-    title:"SH-SAS: An Implicit Neural Representation for Complex Spherical-Harmonic Scattering Fields for 3D Synthetic Aperture Sonar",
-    authors: "Omkar Vengurlekar, Adithya Pediredla, Suren Jayasuriya",
-    venue: "13th International Conference on 3D Vision 2026 (3DV)",
-    presentation: 'Oral',
-    links: {
-      code: 'https://github.com/OmkarV23/SH-SAS',
-      paper: 'https://www.arxiv.org/abs/2509.11087',
-      video: 'https://drive.google.com/file/d/1IMgEknGVkRSvuteTG90Xd_XO35C034wi/view',
-      website: 'https://omkarv23.github.io/SH-SAS-website/'
-    }
+    icon: 'fa-satellite-dish',
+    number: '01',
+    title: 'Computational imaging',
+    description: 'I design sensing systems that recover depth, vibration, and hidden structure from time-of-flight, Schlieren, and multi-camera measurements.',
+    topics: ['Time-of-flight', 'Scientific imaging', 'Tomography', 'Sensor fusion'],
   },
   {
-    title: "ToFGS: Temporally-Resolved Inverse Rendering with Gaussian Splatting for Time-of-Flight",
-    authors: "Omkar Vengurlekar, Aaron Saju Augustine, Suren Jayasuriya",
-    venue: "CVPR 2025 - 2nd Workshop on Neural Fields Beyond Conventional Cameras",
-    links: {
-      paper: 'https://drive.google.com/file/d/1hjN90hH1vaXINQ8U5NgRwn2PIY7cbuQ-/view?usp=drive_link'
-    }
+    icon: 'fa-cube',
+    number: '02',
+    title: 'Differentiable rendering',
+    description: 'I connect physics-based image formation to optimization—building forward models, adjoints, and inverse renderers for optical and acoustic scenes.',
+    topics: ['Inverse rendering', 'Gaussian splatting', 'Neural fields', 'Mitsuba / Dr.Jit'],
   },
   {
-    title: "Z-Splat: Z-Axis Gaussian Splatting for Camera-Sonar Fusion",
-    authors: "Ziyuan Qu, Omkar Vengurlekar, Mohamad Qadri, Kevin Zhang, Michael Kaess, Christopher Metzler, Suren Jayasuriya, Adithya Pediredla",
-    venue: "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)",
-    links: {
-      code: 'https://github.com/QuintonQu/gaussian-splatting-with-depth/tree/gs-depth-main',
-      paper: 'https://arxiv.org/pdf/2404.04687.pdf',
-      data: 'https://drive.google.com/drive/folders/1R1uYa-h4ksr5HuNJ80vgUIKz1qGqF3JV?usp=drive_link',
-      website: 'https://quintonqu.github.io/z-splat-website/'
-    }
+    icon: 'fa-microchip',
+    number: '03',
+    title: 'GPU reconstruction',
+    description: 'I write custom CUDA and OptiX systems for high-throughput simulation, reconstruction, and analysis across unconventional sensing modalities.',
+    topics: ['CUDA', 'OptiX', 'PyTorch / JAX', 'High-performance computing'],
   },
-  {
-    title: "A Hybrid ViT-CNN Architecture for Volumetric Target Classification with Sub-Bottom SAS Data",
-    authors: "Gregory D Vetaw, Omkar S Vengurlekar, Daniel C Brown, Suren Jayasuriya",
-    venue: "IEEE OCEANS 2024-Halifax",
-    links: {
-      paper: 'https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10754426'
-    }
-  },
-  {
-    title: "RSSI filtering methods applied to localization using Bluetooth low energy",
-    authors: "Aditya Kaduskar*, Omkar Vengurlekar*, Varunraj Shinde*",
-    venue: "International Journal of Recent Technology and Engineering (IJRTE)",
-    links: {
-      paper: 'https://www.researchgate.net/publication/363649251_RSSI_Filtering_Methods_Applied_to_Localization_using_Bluetooth_Low_Energy'
-    }
-  }
 ];
 
-const awards = [
-
-  {
-    title: "Ira Fulton Fellowship",
-    event: "Arizona State University ECEE",
-    details: "Highly competitive fellowship for Ph.D. students",
-    year: "2025"
-  },
-  {
-    title: "Travel Grant",
-    event: "ACM SIGGRAPH",
-    details: "Awarded for participating at SIGGRAPH 2024, Denver",
-    year: "2024"
-  },
-  {
-    title: "Travel Grant",
-    event: "IEEE ICCP",
-    details: "Awarded for presenting at ICCP 2024, Switzerland",
-    year: "2024"
-  }
+const toolkit = [
+  { label: 'Sensing', value: 'ToF · Schlieren · RGB · Multimodal', icon: 'fa-wave-square' },
+  { label: 'Representation', value: 'Gaussian splats · Neural fields · Spherical harmonics', icon: 'fa-shapes' },
+  { label: 'Compute', value: 'CUDA · OptiX · PyTorch · JAX · Dr.Jit', icon: 'fa-gauge-high' },
 ];
-
 ---
 
-<Layout title="Omkar Shailendra Vengurlekar - Computer Vision and Computer Graphics Researcher">
+<Layout
+  title="Omkar Vengurlekar — Computational Imaging & Differentiable Rendering"
+  description="Omkar Vengurlekar is a Ph.D. researcher building computational imaging systems, differentiable renderers, and neural 3D reconstruction methods."
+>
   <main>
-    <!-- Hero Section -->
-    <div class="relative bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200">
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd`'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-      </div>
+    <section class="hero-section">
+      <img
+        src="/images/computational-imaging-hero.webp"
+        alt="A point-cloud reconstruction illuminated by optical and acoustic wavefronts"
+        class="hero-art"
+        width="1672"
+        height="940"
+        fetchpriority="high"
+      />
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="scan-beam" aria-hidden="true"></div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Text Content -->
-          <div class="space-y-8">
-            <div class="space-y-2">
-              <h1 class="text-6xl font-bold text-gray-900 leading-tight">
-                Hi, I'm <span class="text-primary">Omkar Vengurlekar</span>
-              </h1>
-              <p class="text-xl text-gray-600 font-medium">
-                Second Year Ph.D. Student <br> Computer Engineering at Arizona State University
-              </p>
-            </div>
+      <div class="relative mx-auto grid min-h-[calc(100svh-72px)] max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
+        <div class="max-w-3xl">
+          <p class="eyebrow">Ph.D. researcher · Arizona State University</p>
+          <h1 class="mt-7 text-5xl font-bold leading-[0.98] tracking-[-0.055em] text-white sm:text-6xl lg:text-[5rem]">
+            I build imaging systems that see what
+            <span class="gradient-text">conventional cameras cannot.</span>
+          </h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl sm:leading-9">
+            I’m Omkar Vengurlekar, a computational imaging researcher working across differentiable rendering, neural scene representations, time-of-flight sensing, and 3D reconstruction.
+          </p>
 
-            <div class="prose prose-lg text-gray-600 space-y-6">
-              <p class="leading-normal">
-                <!-- My research expertise lies at the intersection of deep learning and computational imaging, where I develop solutions for complex computer vision challenges. I specialize in designing neural architectures for image restoration, object detection, and generative modeling, with a particular focus on real-world applications in challenging atmospheric conditions. -->
-                I am a Second-year Ph.D. student in Computer Engineering at Arizona State University. My research interests lie in computer vision, computer graphics, parallel-computing, and deep learning. I am passionate about developing robust and efficient algorithms for real-world applications. I specialize in designing algorithms for Implicit Neural representation, Novel View Synthesis, Volumetric Rendering and 3D Reconstruction. I am particularly interested in developing solutions for complex computer vision challenges using deep learning, computational imaging and rendering techniques.
-</p>
-            
-              <p class="leading-normal">
-                <!-- I've gained valuable industry experience through internships at Kitware Inc. (transformer-based video understanding), Alphacore Inc. (physics-informed deep learning), and Lightsense Technology Inc. (AI for Covid-19 detection using spectral signatures). My work combines classical computer vision with modern deep learning techniques for robust real-world solutions. -->
-                I have gained valuable research experience through visiting Dartmouth College (Computer Science) as a visiting Researcher, where I worked on brainstorming and developing novel algorithms for None-Line-of-Sight Imaginging and 3D Reconstruction. I have also gained industry experience through insternship at Rain AI where I worked on developing efficient algorithms using GPU based parallel computing which helps me to developing robust and low latency algorithms for rendering and image processing applications.
-
-
-              </p>
-
-              <div class="flex items-center space-x-6 pt-6">
-                <a 
-                  href="/about" 
-                  class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
-                >
-                  Learn More
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                  </svg>
-                </a>
-                <div class="flex space-x-4">
-                  <a 
-                    href="mailto:ovengurl@asu.edu" 
-                    class="text-gray-600 hover:text-primary transition-colors p-2 rounded-full hover:bg-gray-100"
-                  >
-                    <i class="fas fa-envelope text-xl"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="/publications" class="button-primary">
+              Explore my research
+              <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+            </a>
+            <a href="/files/Omkar_Vengurlekar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="button-secondary">
+              <i class="fas fa-file-arrow-down" aria-hidden="true"></i>
+              Résumé PDF
+            </a>
+            <a href="mailto:ovengurl@asu.edu" class="button-secondary" aria-label="Email Omkar Vengurlekar">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+            </a>
           </div>
-          
-          <!-- Image -->
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl transform rotate-6"></div>
-            <div class="relative aspect-square overflow-hidden rounded-2xl shadow-2xl transform hover:-translate-y-2 transition-transform duration-300">
-              <img 
-                src="/images/OmkarVengurlekar.JPEG" 
-                alt="Omkar Shailendra Vengurlekar"
-                class="w-full h-full object-cover"
-              />
-            </div>
+
+          <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_#67e8f9]"></span> Time-of-flight</span>
+            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-violet-300 shadow-[0_0_12px_#c4b5fd]"></span> Neural rendering</span>
+            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-teal-300 shadow-[0_0_12px_#5eead4]"></span> Multimodal 3D</span>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Publications Section -->
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold mb-8">Recent Publications</h2>
-        <div class="grid gap-6">
-          {publications.map((pub) => (
-            <div class="bg-gray-50 p-6 rounded-lg">
-              <h3 class="text-xl font-semibold mb-2">{pub.title}</h3>
-              <p class="text-gray-600 mb-2">{pub.authors}</p>
-              <p class="text-primary font-medium">
-                {pub.venue}
-                {pub.presentation && (
-                  <span class="italic text-sm text-gray-600 ml-2">({pub.presentation})</span>
-                )}
-              </p>
-              {pub.links && (
-                <div class="flex flex-wrap gap-3 mt-4">
-                  {pub.links.code && (
-                    <a
-                      href={pub.links.code}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Code
-                    </a>
-                  )}
-                  {pub.links.paper && (
-                    <a
-                      href={pub.links.paper}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Paper
-                    </a>
-                  )}
-                  {pub.links.video && (
-                    <a
-                      href={pub.links.video}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Video
-                    </a>
-                  )}
-                  {pub.links.website && (
-                    <a
-                      href={pub.links.website}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Website
-                    </a>
-                  )}
-                  {pub.links.data && (
-                    <a
-                      href={pub.links.data}
-                      class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border border-primary rounded-md hover:bg-primary/10 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Data
-                    </a>
-                  )}
-                </div>
-              )}
+        <aside class="glass-panel justify-self-end p-5 sm:p-6 lg:w-[25rem]" aria-label="Research profile summary">
+          <div class="flex items-center gap-4 border-b border-cyan-200/10 pb-5">
+            <img
+              src="/images/OmkarVengurlekar.JPEG"
+              alt="Omkar Vengurlekar"
+              class="h-16 w-16 rounded-xl object-cover object-top ring-1 ring-cyan-200/25"
+              width="96"
+              height="96"
+            />
+            <div>
+              <p class="text-base font-bold text-white">Omkar Vengurlekar</p>
+              <p class="mt-1 text-xs leading-5 text-slate-400">Imaging Lyceum Lab · ASU</p>
             </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 py-5">
+            <div>
+              <p class="text-2xl font-black tracking-tight text-cyan-100">10M</p>
+              <p class="mt-1 text-[10px] uppercase leading-4 tracking-[0.12em] text-slate-500">depth samples / s</p>
+            </div>
+            <div class="border-x border-cyan-200/10 px-3">
+              <p class="text-2xl font-black tracking-tight text-violet-200">02</p>
+              <p class="mt-1 text-[10px] uppercase leading-4 tracking-[0.12em] text-slate-500">patents filed</p>
+            </div>
+            <div>
+              <p class="text-2xl font-black tracking-tight text-teal-200">06</p>
+              <p class="mt-1 text-[10px] uppercase leading-4 tracking-[0.12em] text-slate-500">publications</p>
+            </div>
+          </div>
+
+          <div class="signal-line" aria-hidden="true"></div>
+          <div class="mt-5 flex items-start justify-between gap-5">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Current research signal</p>
+              <p class="mt-2 text-sm leading-6 text-slate-300">Physics-guided reconstruction of depth, motion, and invisible refractive fields.</p>
+            </div>
+            <i class="fas fa-wave-square mt-1 text-cyan-300" aria-hidden="true"></i>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="patents" class="section-shell scroll-mt-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <p class="section-kicker">Patents</p>
+            <h2 class="section-heading">From research signals to protected systems.</h2>
+          </div>
+          <div class="lg:justify-self-end">
+            <p class="section-copy max-w-2xl">
+              Two U.S. provisional applications translate high-speed optical sensing and physics-guided 3D reconstruction into protectable technology.
+            </p>
+            <a href="/patents" class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-cyan-200 transition hover:text-white">
+              View filing details <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-12 grid gap-6 xl:grid-cols-2">
+          {patents.map((patent, index) => <PatentCard patent={patent} index={index} compact />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <p class="section-kicker">Research spectrum</p>
+            <h2 class="section-heading">From physical signals to 3D understanding.</h2>
+          </div>
+          <p class="section-copy max-w-2xl lg:justify-self-end">
+            My work spans the full imaging pipeline: I build sensing hardware, model how signals propagate, write differentiable renderers, and optimize scene representations on the GPU.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-5 lg:grid-cols-3">
+          {researchDomains.map((domain) => (
+            <article class="domain-card">
+              <div class="relative z-10 flex items-start justify-between">
+                <div class="domain-icon"><i class={`fas ${domain.icon}`} aria-hidden="true"></i></div>
+                <span class="text-xs font-black tracking-[0.2em] text-slate-700">{domain.number}</span>
+              </div>
+              <div class="relative z-10 mt-12">
+                <h3 class="text-2xl font-bold tracking-tight text-white">{domain.title}</h3>
+                <p class="mt-4 text-sm leading-7 text-slate-400">{domain.description}</p>
+                <div class="mt-7 flex flex-wrap gap-2">
+                  {domain.topics.map((topic) => <span class="topic-chip">{topic}</span>)}
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>
     </section>
 
-    <ExpertiseSection />
-    <TechnicalSkills />
+    <section class="section-shell border-y border-cyan-300/10 bg-slate-950/35">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="section-kicker">Selected publications</p>
+            <h2 class="section-heading">Recent work</h2>
+          </div>
+          <a href="/publications" class="button-secondary w-fit">
+            View all publications
+            <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+          </a>
+        </div>
 
-    <!-- Awards Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold mb-8">Awards & Recognition</h2>
-        <div class="grid gap-6 md:grid-cols-3">
-          {awards.map((award) => (
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-              <h3 class="text-xl font-semibold mb-2">{award.title}</h3>
-              <p class="text-gray-600 mb-2">{award.event}</p>
-              {award.details && <p class="text-sm text-gray-500">{award.details}</p>}
-              <p class="text-primary font-medium mt-2">{award.year}</p>
-            </div>
+        <div class="mt-12 grid gap-6">
+          {featuredPublications.map((publication, index) => (
+            <PublicationCard publication={publication} index={index} compact={index > 0} />
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel overflow-hidden">
+          <div class="grid lg:grid-cols-[0.72fr_1.28fr]">
+            <div class="border-b border-cyan-200/10 p-7 sm:p-10 lg:border-b-0 lg:border-r">
+              <p class="section-kicker">Research toolkit</p>
+              <h2 class="mt-4 text-3xl font-bold tracking-[-0.04em] text-white sm:text-4xl">Hardware, physics, code.</h2>
+              <p class="mt-5 text-sm leading-7 text-slate-400">I own the pipeline from calibrated capture and signal processing to differentiable simulation and GPU reconstruction.</p>
+            </div>
+            <div class="grid divide-y divide-cyan-200/10 lg:divide-y-0">
+              {toolkit.map((item) => (
+                <div class="group flex gap-5 p-7 transition hover:bg-cyan-950/15 sm:p-8">
+                  <div class="domain-icon shrink-0"><i class={`fas ${item.icon}`} aria-hidden="true"></i></div>
+                  <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">{item.label}</p>
+                    <p class="mt-2 text-base leading-7 text-slate-200">{item.value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-2xl border border-violet-300/15 bg-gradient-to-br from-violet-950/50 via-slate-900 to-cyan-950/50 p-8 sm:p-12">
+          <div class="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" aria-hidden="true"></div>
+          <div class="relative grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p class="section-kicker">Open to research collaborations</p>
+              <h2 class="mt-4 max-w-3xl text-3xl font-bold tracking-[-0.04em] text-white sm:text-4xl">Let’s build imaging systems for the signals cameras miss.</h2>
+            </div>
+            <a href="/contact" class="button-primary w-fit">Start a conversation <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i></a>
+          </div>
         </div>
       </div>
     </section>

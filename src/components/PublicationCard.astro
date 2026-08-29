@@ -1,0 +1,45 @@
+---
+import type { Publication } from '../data/publications';
+
+interface Props {
+  publication: Publication;
+  index: number;
+  compact?: boolean;
+}
+
+const { publication, index, compact = false } = Astro.props;
+---
+
+<article class:list={['publication-card group', { 'publication-card--compact': compact }]}>
+  <div class="publication-card__index" aria-hidden="true">
+    {String(index + 1).padStart(2, '0')}
+  </div>
+
+  <div class="publication-card__body">
+    <div class="flex flex-wrap items-center gap-3 mb-4">
+      <span class="eyebrow-chip">{publication.year}</span>
+      <span class="text-xs font-semibold tracking-[0.16em] uppercase text-cyan-200/70">{publication.venue}</span>
+      {publication.featured && <span class="featured-chip">Featured</span>}
+    </div>
+
+    <h3 class="publication-card__title">{publication.title}</h3>
+    <p class="publication-card__authors">{publication.authors}</p>
+    {publication.note && <p class="mt-2 text-xs text-slate-400">{publication.note}</p>}
+
+    {!compact && <p class="publication-card__summary">{publication.summary}</p>}
+
+    <div class="flex flex-wrap gap-2 mt-5">
+      {publication.tags.map((tag) => <span class="topic-chip">{tag}</span>)}
+    </div>
+
+    <div class="publication-card__links">
+      {publication.links.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer" class="research-link">
+          <i class={`fas ${link.icon}`} aria-hidden="true"></i>
+          <span>{link.label}</span>
+          <i class="fas fa-arrow-up-right-from-square text-[10px] opacity-60" aria-hidden="true"></i>
+        </a>
+      ))}
+    </div>
+  </div>
+</article>

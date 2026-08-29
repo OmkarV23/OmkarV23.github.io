@@ -1,131 +1,111 @@
 ---
-import { PureComponent } from 'react';
 import Layout from '../layouts/Layout.astro';
 
-const professionalExperiences = [
-{
-    company: "Imaging Lyceum Lab, Arizona State University",
-    location: "Tempe, AZ",
-    position: "Research Assistant",
-    period: "January 2024 - Present",
+const experiences = [
+  {
+    organization: 'Arizona State University · Imaging Lyceum Lab',
+    role: 'Graduate Research Assistant',
+    location: 'Tempe, Arizona',
+    period: 'January 2024 — Present',
+    accent: 'bg-cyan-300',
     details: [
-      "Developing state-of-the-art 3D reconstruction and rendering techniques leveraging Gaussian methods, deep learning, and implicit neural representations. ",
-      "Designing multi-modal sensor fusion techniques for improved 3D scene understanding, integrating Time-of-Flight (ToF), Acoustic, Electromagnetic, and Optical data.",
-      "Optimizing algorithms for high-performance computing (HPC) environments, utilizing CUDA, PyTorch, and parallel processing for large-scale 3D reconstruction.",
-      "Collaborating with cross-disciplinary teams in computer vision, acoustics, and computational imaging to advance next-generation imaging technologies."
-    ]
+      'Developing optical time-of-flight sensing, differentiable rendering, neural 3D reconstruction, and multimodal imaging systems.',
+      'Built custom CUDA autograd kernels, OptiX transient renderers, and GPU inverse-rendering pipelines for sonar, Gaussian splatting, and refractive fields.',
+      'Published co-first-author work at ACM TOG / SIGGRAPH Asia 2026 and first-author oral work at 3DV 2026.',
+    ],
   },
   {
-    company: "Dartmouth University",
-    location: "Hanover, NH",
-    position: "Visiting Doctorate Student",
-    period: "May 2024 - July 2024",
+    organization: 'Chiba University',
+    role: 'Visiting Ph.D. Student',
+    location: 'Chiba, Japan',
+    period: 'July 2026 — August 2026',
+    accent: 'bg-violet-300',
     details: [
-      "Developed and prototyped advanced Acoustic-Non-Line-of-Sight (NLOS) imaging hardware and algorithms, enhancing visibility through occlusions using deep learning and signal processing.",
-      "Investigated multi-modal imaging approaches, particularly Acousto-optic fusion, integrating acoustic and optical data to refine depth estimation and scene reconstruction.",
-      "Conducted extensive experimentation on wave propagation models, improving acoustic-based scene inference in complex environments."
-    ]
+      'Developed differentiable Background-Oriented Schlieren tomography for time-varying 3D refractive-index reconstruction.',
+      'Built a synthetic-to-real pipeline with GPU flow simulation, calibrated multi-camera rendering, and measurement-only reconstruction.',
+      'Validated the system on a six-camera rig imaging density-driven flows in air and water.',
+    ],
   },
   {
-    company: "RAIN AI",
-    location: "Remote, AZ",
-    position: "AI Hardware and Systems Intern",
-    period: "August 2023 - December 2023",
+    organization: 'Dartmouth College',
+    role: 'Visiting Ph.D. Student',
+    location: 'Hanover, New Hampshire',
+    period: 'May 2024 — July 2024',
+    accent: 'bg-teal-300',
     details: [
-      "Designed and implemented high-performance CUDA kernels for accelerating deep learning workloads, optimizing matrix operations, convolutions, and transformer models.",
-      "Benchmarked and analyzed various AI accelerators, evaluating performance, power efficiency, and memory bandwidth for hardware-aware AI model optimizations.",
-      "Collaborated with hardware engineers and AI researchers to co-design deep learning models optimized for edge computing and custom AI chips."
-    ]
+      'Prototyped acoustic non-line-of-sight imaging hardware and acousto-optic capture of occluded surfaces.',
+      'Collaborated with the Rendering and Imaging Science Lab on multimodal computational imaging systems.',
+    ],
   },
   {
-    company: "Automaton AI",
-    location: "Pune, India",
-    position: "Machine Learning Engineer",
-    period: "March 2021 - June 2022",
-    details:[
-      "Led the deep learning backend development of an AI-powered auto-annotation tool used for object detection, segmentation, and classification, currently deployed in educational institutions and large enterprises.",
-      "Integrated SSD, YOLOv3, YOLOv4, YOLOv5, RetinaNet, and Mask R-CNN into the tool’s API, streamlining pre-processing, training, evaluation, and deployment pipelines.",
-      "Designed an optimized deployment pipeline, converting trained models to ONNX and further optimizing inference with TensorRT, significantly enhancing processing speed."
-    ]
-  }
+    organization: 'RAIN AI',
+    role: 'AI Hardware and Systems Intern',
+    location: 'Remote, USA',
+    period: 'August 2023 — December 2023',
+    accent: 'bg-cyan-300',
+    details: [
+      'Implemented custom CUDA kernels for pretrained machine-learning workloads.',
+      'Benchmarked GPU performance against custom AI accelerator hardware.',
+    ],
+  },
+  {
+    organization: 'Automaton AI',
+    role: 'Computer Vision Engineer',
+    location: 'Pune, India',
+    period: 'March 2021 — July 2022',
+    accent: 'bg-violet-300',
+    details: [
+      'Designed an end-to-end automatic data-annotation pipeline for detection, segmentation, and keypoint tasks.',
+      'Deployed efficient model inference on NVIDIA edge devices using post-training quantization.',
+    ],
+  },
 ];
-
-// const teachingExperience = [
-//   {
-//     course: "MAT 117: Linear Algebra",
-//     period: "Fall 2022",
-//     details: [
-
-//     ]
-//   },
-  
-//   {
-//     course: "AME 494: Minds and Machines",
-//     period: "Spring 2023",
-//     details: [
-//       "Conducted regular office hours for student consultations",
-//       "Managed grading responsibilities for course assignments and exams",
-//       "Provided additional support for students struggling with course material"
-//     ]
-//   }
-// ];
 ---
 
-<Layout title="Experience - Omkar Shailendra Vengurlekar">
-  <main class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold mb-12">Professional Experience</h1>
-      
-      <div class="space-y-8 mb-16">
-        {professionalExperiences.map((exp) => (
-          <div class="bg-white p-6 rounded-lg shadow-sm">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="text-xl font-semibold text-primary">{exp.company}</h3>
-                <p class="text-lg font-medium mt-1">{exp.position}</p>
-                <p class="text-gray-500">{exp.location}</p>
-              </div>
-              <p class="text-gray-500">{exp.period}</p>
-            </div>
-            <ul class="mt-4 space-y-2">
-              {exp.details.map((detail) => (
-                <li class="text-gray-600 flex items-start">
-                  <span class="text-primary mr-2">•</span>
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+<Layout title="Experience — Omkar Vengurlekar">
+  <main>
+    <header class="page-hero">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="eyebrow">Research experience</p>
+        <h1 class="mt-6 max-w-5xl text-5xl font-bold tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
+          Building across hardware, <span class="gradient-text">physics, and code.</span>
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300">A research path through computational imaging labs, GPU systems, and production computer vision.</p>
       </div>
+    </header>
 
-      <!-- <div class="bg-gray-50 p-8 rounded-lg mb-16">
-        <h2 class="text-2xl font-semibold mb-8 text-gray-700">Teaching Experience</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          {teachingExperience.map((course) => (
-            <div class="bg-white p-6 rounded-lg border border-gray-100">
-              <div class="mb-4">
-                <h3 class="text-lg font-medium text-gray-800">{course.course}</h3>
-                <p class="text-gray-500 text-sm">{course.period}</p>
+    <section class="page-content">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="relative space-y-6 before:absolute before:bottom-5 before:left-[1.18rem] before:top-5 before:w-px before:bg-gradient-to-b before:from-cyan-300/50 before:via-violet-300/25 before:to-transparent sm:before:left-[1.55rem]">
+          {experiences.map((experience) => (
+            <article class="relative grid grid-cols-[2.5rem_1fr] gap-5 sm:grid-cols-[3.2rem_1fr] sm:gap-7">
+              <div class="relative z-10 mt-8 grid h-9 w-9 place-items-center rounded-full border border-slate-700 bg-slate-950 sm:h-12 sm:w-12">
+                <span class={`h-2.5 w-2.5 rounded-full ${experience.accent} shadow-[0_0_16px_currentColor]`}></span>
               </div>
-              <ul class="space-y-2">
-                {course.details.map((detail) => (
-                  <li class="text-gray-600 flex items-start text-sm">
-                    {detail.startsWith('•') ? (
-                      <span class="ml-4">{detail}</span>
-                    ) : (
-                      <>
-                        <span class="text-gray-400 mr-2">•</span>
-                        <span>{detail}</span>
-                      </>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <div class="content-card p-6 sm:p-8">
+                <div class="flex flex-col gap-4 border-b border-cyan-200/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h2 class="text-xl font-bold text-white sm:text-2xl">{experience.organization}</h2>
+                    <p class="mt-2 font-semibold text-cyan-200">{experience.role}</p>
+                  </div>
+                  <div class="text-sm leading-6 text-slate-500 sm:text-right">
+                    <p>{experience.period}</p>
+                    <p>{experience.location}</p>
+                  </div>
+                </div>
+                <ul class="mt-6 space-y-3">
+                  {experience.details.map((detail) => (
+                    <li class="flex gap-3 text-sm leading-7 text-slate-300">
+                      <span class="mt-[0.7rem] h-1 w-1 shrink-0 rounded-full bg-cyan-300"></span>
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
           ))}
         </div>
-      </div> -->
-    </div>
+      </div>
+    </section>
   </main>
 </Layout>

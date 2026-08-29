@@ -2,64 +2,52 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contact - Omkar Shailendra Vengurlekar">
-  <main class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h1 class="text-4xl font-bold mb-4">Contact</h1>
-        <p class="text-gray-600 max-w-2xl mx-auto">I am open to discussing research collaborations and new opportunities in Computer Graphics, Computer Vision and Deep Learning.</p>
+<Layout title="Contact — Omkar Vengurlekar">
+  <main>
+    <header class="page-hero">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p class="eyebrow">Contact</p>
+        <h1 class="mt-6 max-w-5xl text-5xl font-bold tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
+          Let’s make hidden signals <span class="gradient-text">visible.</span>
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300">I’m open to research collaborations and opportunities in computational imaging, 3D vision, differentiable rendering, and scientific sensing.</p>
       </div>
-      
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="bg-white p-8 rounded-xl shadow-sm">
-          <h2 class="text-2xl font-semibold mb-6">Current Location</h2>
-          <div class="space-y-6">
-            <div>
-              <h3 class="font-medium text-gray-900 mb-2">Office Address</h3>
-              <p class="text-gray-600">
-                Arizona State University<br />
-                Imaging Lyceum Lab<br />
-                University Graduate Building<br />
-                945 S Mill Ave<br />
-                Tempe, AZ 85281
-              </p>
-            </div>
-            <div>
-              <h3 class="font-medium text-gray-900 mb-2">Contact Details</h3>
-              <p class="text-gray-600">
-                <span class="block mb-1">📧 ovengurl@asu.edu</span>
-              </p>
-            </div>
-            <div>
-              <h3 class="font-medium text-gray-900 mb-2">Office Hours</h3>
-              <p class="text-gray-600">
-                Monday - Friday<br />
-                9:00 AM - 5:00 PM MST
-              </p>
-            </div>
-          </div>
+    </header>
+
+    <section class="page-content">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-6 md:grid-cols-2">
+          <article class="content-card p-7 sm:p-9">
+            <div class="domain-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+            <p class="mt-8 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Best way to reach me</p>
+            <h2 class="mt-3 text-2xl font-bold text-white">Email</h2>
+            <p class="mt-4 text-sm leading-7 text-slate-400">For research discussions, collaborations, talks, or internship opportunities.</p>
+            <a href="mailto:ovengurl@asu.edu" class="button-primary mt-8">ovengurl@asu.edu <i class="fas fa-arrow-right text-xs"></i></a>
+          </article>
+
+          <article class="content-card p-7 sm:p-9">
+            <div class="domain-icon"><i class="fas fa-location-dot" aria-hidden="true"></i></div>
+            <p class="mt-8 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Current affiliation</p>
+            <h2 class="mt-3 text-2xl font-bold text-white">Imaging Lyceum Lab</h2>
+            <p class="mt-4 text-sm leading-7 text-slate-400">School of Electrical, Computer and Energy Engineering<br />Arizona State University · Tempe, Arizona</p>
+            <a href="https://sites.google.com/asu.edu/imaging-lyceum" target="_blank" rel="noopener noreferrer" class="button-secondary mt-8">Visit the lab <i class="fas fa-arrow-up-right-from-square text-xs"></i></a>
+          </article>
         </div>
-        
-        <div class="bg-white p-8 rounded-xl shadow-sm">
-          <h2 class="text-2xl font-semibold mb-6">Academic Affiliations</h2>
-          <div class="space-y-6">
+
+        <div class="mt-6 content-card p-7 sm:p-9">
+          <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <h3 class="font-medium text-gray-900 mb-2">Current Role</h3>
-              <p class="text-gray-600">
-                PhD Candidate<br />
-                School of Electrical, Computer and Energy Engineering<br />
-                Arizona State University
-              </p>
+              <p class="section-kicker">Research materials</p>
+              <h2 class="mt-4 text-3xl font-bold tracking-[-0.04em] text-white">Looking for papers, code, or my CV?</h2>
+              <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-400">The publications archive links directly to project pages, papers, codebases, and datasets.</p>
             </div>
-            <div>
-              <h3 class="font-medium text-gray-900 mb-2">Lab Memberships</h3>
-              <p class="text-gray-600">
-                Imaging Lyceum Lab<br />
-              </p>
+            <div class="flex flex-wrap gap-3">
+              <a href="/publications" class="button-primary">Publications</a>
+              <a href="/files/Omkar_Vengurlekar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="button-secondary">Résumé PDF</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 </Layout>

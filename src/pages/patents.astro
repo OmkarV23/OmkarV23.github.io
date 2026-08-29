@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PatentCard from '../components/PatentCard.astro';
+import { patents } from '../data/patents';
+---
+
+<Layout
+  title="Patents — Omkar Vengurlekar"
+  description="Patent applications by Omkar Vengurlekar in computational imaging, high-speed depth sensing, and physics-guided 3D reconstruction."
+>
+  <main>
+    <header class="page-hero">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <p class="eyebrow">Intellectual property · 2026</p>
+          <h1 class="mt-6 text-5xl font-bold tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
+            Research translated into <span class="gradient-text">protected systems.</span>
+          </h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
+            Two U.S. provisional applications spanning high-speed optical depth sensing and physics-guided 3D scene reconstruction.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-content">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 grid gap-6 border-b border-cyan-300/10 pb-10 sm:grid-cols-3">
+          <div>
+            <p class="text-4xl font-black tracking-tight text-cyan-100">02</p>
+            <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Applications filed</p>
+          </div>
+          <div>
+            <p class="text-4xl font-black tracking-tight text-violet-200">2026</p>
+            <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Filing year</p>
+          </div>
+          <div>
+            <p class="text-4xl font-black tracking-tight text-teal-200">US</p>
+            <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Jurisdiction</p>
+          </div>
+        </div>
+
+        <div class="grid gap-6">
+          {patents.map((patent, index) => <PatentCard patent={patent} index={index} />)}
+        </div>
+
+        <p class="mt-8 max-w-3xl text-sm leading-7 text-slate-500">
+          Applications are listed by filing date. Related links point to public research materials; filing documents are not hosted on this website.
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>

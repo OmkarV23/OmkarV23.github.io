@@ -1,133 +1,149 @@
 ---
 import '@fontsource/inter';
+import '../styles/global.css';
 
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = 'Omkar Vengurlekar — computational imaging, differentiable rendering, computer vision, and 3D reconstruction.',
+} = Astro.props;
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/experience", label: "Experience" },
-  { href: "/publications", label: "Publications" },
-  // { href: "/portfolio", label: "Portfolio" },
-  // { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" }
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/experience', label: 'Experience' },
+  { href: '/publications', label: 'Publications' },
+  { href: '/patents', label: 'Patents' },
+  { href: '/contact', label: 'Contact' },
 ];
+
+const isActive = (href: string) =>
+  Astro.url.pathname === href || (href !== '/' && Astro.url.pathname.startsWith(href));
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Omkar Shailendra Vengurlekar - Computer Vision Researcher" />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#020617" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="/images/computational-imaging-hero.webp" as="image" type="image/webp" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-50">
-    <nav class="bg-white shadow sticky top-0 z-50">
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <div class="site-backdrop" aria-hidden="true"></div>
+
+    <nav class="site-nav sticky top-0 z-50" aria-label="Primary navigation">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex">
-            <div class="flex-shrink-0 flex items-center">
-              <a href="/" class="text-2xl font-extrabold tracking-tight text-gray-900 hover:text-primary transition-colors">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Omkar</span>
-                <span class="text-gray-900">Vengurlekar</span>
+        <div class="flex h-[72px] items-center justify-between">
+          <a href="/" class="group flex items-center gap-3" aria-label="Omkar Vengurlekar home">
+            <span class="grid h-10 w-10 place-items-center rounded-xl border border-cyan-300/20 bg-cyan-950/50 text-sm font-black tracking-tight text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,0.12)] transition group-hover:border-cyan-200/45">
+              OV
+            </span>
+            <span class="hidden sm:block">
+              <span class="block text-sm font-bold tracking-tight text-white">Omkar Vengurlekar</span>
+              <span class="block text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Computational imaging</span>
+            </span>
+          </a>
+
+          <div class="hidden lg:flex h-full items-center gap-6">
+            {navItems.map((item) => (
+              <a
+                href={item.href}
+                class="nav-link text-sm font-semibold"
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
               </a>
-            </div>
-            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-              {navItems.map((item) => (
-                <a
-                  href={item.href}
-                  class={`text-gray-600 hover:text-primary transition-all inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 ${
-                    (Astro.url.pathname === item.href || (item.href !== '/' && Astro.url.pathname.startsWith(item.href))) 
-                      ? 'border-primary text-primary' 
-                      : 'border-transparent hover:border-primary'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
+            ))}
           </div>
-          
-          <!-- Mobile menu button -->
-          <div class="sm:hidden flex items-center">
-            <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-colors">
+
+          <div class="flex items-center gap-3">
+            <a
+              href="/files/Omkar_Vengurlekar_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hidden sm:inline-flex items-center gap-2 rounded-lg border border-cyan-300/20 bg-cyan-950/35 px-4 py-2.5 text-xs font-bold text-cyan-100 transition hover:border-cyan-200/45 hover:bg-cyan-950/60"
+            >
+              <i class="fas fa-file-arrow-down" aria-hidden="true"></i>
+              Résumé
+            </a>
+
+            <button
+              type="button"
+              class="mobile-menu-button inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/80 text-slate-300 transition hover:border-cyan-300/40 hover:text-cyan-100 lg:hidden"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+            >
               <span class="sr-only">Open main menu</span>
-              <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
           </div>
         </div>
       </div>
-      
-      <!-- Mobile menu -->
-      <div class="sm:hidden hidden mobile-menu border-t border-gray-200">
-        <div class="pt-2 pb-3 space-y-1">
+
+      <div id="mobile-menu" class="mobile-menu hidden border-t border-slate-800/80 bg-slate-950/95 px-4 py-4 lg:hidden">
+        <div class="mx-auto grid max-w-7xl gap-1">
           {navItems.map((item) => (
             <a
               href={item.href}
-              class={`block pl-4 pr-4 py-3 text-base font-medium transition-colors ${
-                (Astro.url.pathname === item.href || (item.href !== '/' && Astro.url.pathname.startsWith(item.href)))
-                  ? 'bg-gray-50 text-primary border-l-4 border-primary'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-primary border-l-4 border-transparent'
-              }`}
+              class:list={[
+                'rounded-lg px-4 py-3 text-sm font-semibold transition',
+                isActive(item.href) ? 'bg-cyan-950/45 text-cyan-100' : 'text-slate-400 hover:bg-slate-900 hover:text-white',
+              ]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
             >
               {item.label}
             </a>
           ))}
+          <a href="/files/Omkar_Vengurlekar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-2 rounded-lg border border-cyan-300/20 px-4 py-3 text-sm font-semibold text-cyan-100">
+            Résumé PDF <i class="fas fa-arrow-up-right-from-square ml-1 text-xs" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </nav>
-    
+
     <slot />
-    
-    <footer class="bg-gray-900 text-white py-8">
+
+    <footer class="border-t border-cyan-300/10 bg-slate-950/90 py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center space-y-6">
-          <ul class="flex justify-center space-x-6">
-            <li>
-              <a href="https://github.com/OmkarV23" class="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github text-2xl"></i>
-                <span class="sr-only">GitHub</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/omkar-veng/" class="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-linkedin text-2xl"></i>
-                <span class="sr-only">LinkedIn</span>
-              </a>
-            </li>
-            <li>
-              <a href="mailto:ovengurl@asu.edu" class="text-gray-300 hover:text-white transition-colors">
-                <i class="fas fa-envelope text-2xl"></i>
-                <span class="sr-only">Email</span>
-              </a>
-            </li>
-            <!-- <li>
-              <a href="https://www.facebook.com/ImaginaryPlanet" class="text-gray-300 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-facebook text-2xl"></i>
-                <span class="sr-only">Facebook</span>
-              </a>
-            </li> -->
+        <div class="grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
+            <p class="eyebrow">Rendering signals into insight</p>
+            <p class="mt-4 max-w-xl text-sm leading-7 text-slate-400">
+              Computational imaging, differentiable rendering, neural scene representations, and unconventional sensing.
+            </p>
+          </div>
+
+          <ul class="flex flex-wrap gap-3" aria-label="External profiles">
+            <li><a href="https://scholar.google.com/citations?user=wpP8K-4AAAAJ" target="_blank" rel="noopener noreferrer" class="research-link"><i class="fas fa-graduation-cap"></i><span>Scholar</span></a></li>
+            <li><a href="https://github.com/OmkarV23" target="_blank" rel="noopener noreferrer" class="research-link"><i class="fab fa-github"></i><span>GitHub</span></a></li>
+            <li><a href="https://www.linkedin.com/in/omkar-veng/" target="_blank" rel="noopener noreferrer" class="research-link"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a></li>
+            <li><a href="https://orcid.org/0009-0006-2861-8103" target="_blank" rel="noopener noreferrer" class="research-link"><i class="fab fa-orcid"></i><span>ORCID</span></a></li>
           </ul>
-          <p>&copy; {new Date().getFullYear()} Omkar Shailendra Vengurlekar. All rights reserved.</p>
+        </div>
+
+        <div class="mt-10 flex flex-col gap-3 border-t border-slate-800/80 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {new Date().getFullYear()} Omkar Shailendra Vengurlekar</p>
+          <a href="mailto:ovengurl@asu.edu" class="transition hover:text-cyan-200">ovengurl@asu.edu</a>
         </div>
       </div>
     </footer>
 
     <script>
-      // Mobile menu toggle
       const mobileMenuButton = document.querySelector('.mobile-menu-button');
       const mobileMenu = document.querySelector('.mobile-menu');
 
       mobileMenuButton?.addEventListener('click', () => {
+        const isOpen = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
         mobileMenu?.classList.toggle('hidden');
       });
     </script>

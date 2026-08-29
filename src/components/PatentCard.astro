@@ -1,0 +1,59 @@
+---
+import type { Patent } from '../data/patents';
+
+interface Props {
+  patent: Patent;
+  index: number;
+  compact?: boolean;
+}
+
+const { patent, index, compact = false } = Astro.props;
+---
+
+<article class:list={['patent-card group', { 'patent-card--compact': compact }]}>
+  <div class="patent-card__signal" aria-hidden="true">
+    <span>{String(index + 1).padStart(2, '0')}</span>
+    <i class="fas fa-fingerprint"></i>
+  </div>
+
+  <div class="patent-card__body">
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="patent-status"><span class="patent-status__dot"></span>{patent.status}</span>
+      <span class="eyebrow-chip">{patent.type}</span>
+    </div>
+
+    <h3 class="patent-card__title">{patent.title}</h3>
+    <p class="patent-card__inventors"><span>Inventors</span>{patent.inventors}</p>
+
+    {!compact && <p class="patent-card__summary">{patent.summary}</p>}
+
+    <dl class="patent-metadata">
+      <div>
+        <dt>Application</dt>
+        <dd>{patent.applicationNumber}</dd>
+      </div>
+      <div>
+        <dt>Filed</dt>
+        <dd>{patent.filedDate}</dd>
+      </div>
+      <div>
+        <dt>Jurisdiction</dt>
+        <dd>{patent.country}</dd>
+      </div>
+    </dl>
+
+    <div class="mt-5 flex flex-wrap gap-2">
+      {patent.tags.map((tag) => <span class="topic-chip">{tag}</span>)}
+    </div>
+
+    <div class="publication-card__links">
+      {patent.links.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer" class="research-link">
+          <i class={`fas ${link.icon}`} aria-hidden="true"></i>
+          <span>{link.label}</span>
+          <i class="fas fa-arrow-up-right-from-square text-[10px] opacity-60" aria-hidden="true"></i>
+        </a>
+      ))}
+    </div>
+  </div>
+</article>
