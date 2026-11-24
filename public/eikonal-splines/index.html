@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eikonal Splines: Efficient Inverse Rendering of Time-Varying Refractive Media</title>
+  <meta name="description" content="Eikonal Splines: a feature-plane network generates a cubic B-spline refractive-index field that is traced and differentiated along curved rays, for schlieren tomography, shape through moving water, and dynamic gradient-index optics.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Eikonal Splines: Efficient Inverse Rendering of Time-Varying Refractive Media">
+  <meta property="og:description" content="Differentiable inverse rendering of time-varying refractive media with a generated cubic B-spline field and curved-ray light transport.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6f8b'/%3E%3Cpath d='M5 22C13 22 15 10 27 10' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">Preprint &middot; 2026</p>
+  <h1>Eikonal Splines <span>Efficient Inverse Rendering of Time-Varying Refractive Media</span></h1>
+  <p class="authors">
+    <span><a href="https://omkarv23.github.io/">Omkar Vengurlekar</a><sup>1</sup></span>
+    <span>Hiroyuki Kubo<sup>2</sup></span>
+    <span>Suren Jayasuriya<sup>1</sup></span>
+  </p>
+  <p class="affiliations"><span><sup>1</sup>Arizona State University</span> <span><sup>2</sup>Chiba University</span></p>
+  <p class="links">
+    <a class="button" href="static/paper/eikonal_splines.pdf">Paper and supplement</a>
+    <span class="button soon">Code <small>soon</small></span>
+    <span class="button soon">Data <small>soon</small></span>
+  </p>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#abstract">Abstract</a>
+  <a href="#method">Method</a>
+  <a href="#schlieren">Schlieren tomography</a>
+  <a href="#water">Shape through water</a>
+  <a href="#grin">Dynamic GRIN</a>
+  <a href="#interpolation">Interpolation</a>
+  <a href="#bibtex">BibTeX</a>
+</nav>
+
+<main>
+
+  <figure class="wide">
+    <img src="static/images/teaser.jpg" width="2014" height="621" alt="Three applications: 4D BOS tomography with six cameras around a heated-air plume, shape through water with three cameras above a tank, and dynamic GRIN optimization of a volume that projects two videos.">
+    <figcaption>Our framework for inverse rendering of time-varying media on three applications: (a) recovering heated air over time, (b) recovering an object and the moving water above it, and (c) designing a volume that projects two videos.</figcaption>
+  </figure>
+
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <p class="prose">Inverse rendering in time-varying refractive media requires repeatedly tracing and differentiating curved light paths through a field that is itself unknown. Neural fields provide useful priors for inverse rendering but are costly to evaluate and differentiate for a large number of rays, while directly optimized trilinear grids have gradients that jump between cells and overfit when views are few. We present Eikonal Splines, a differentiable inverse rendering framework combining neural priors with efficient, physically based curved-ray light transport. Our key insight is to leverage a spatiotemporal feature-plane neural network to generate a smooth cubic B-spline field, which allows efficient querying of the refractive index and its gradient in forward ray tracing while utilizing the spline's differentiability for efficient adjoint optimization in backward ray tracing. Our framework matches or improves the reconstruction accuracy and unseen-view generalization of both grid-based and neural baselines, and trains faster than the neural ones. We demonstrate its versatility on simulated and real data through background-oriented schlieren tomography in air and water, dynamic gradient-index optimization, and joint reconstruction of water surfaces and of objects under moving water.</p>
+  </section>
+
+  <section id="method">
+    <h2>Method</h2>
+    <figure class="wide">
+      <img src="static/images/method.png" width="2313" height="784" loading="lazy" alt="Pipeline: feature planes and node coordinates pass through Fourier encodings and an MLP to give B-spline coefficients on a lattice; rays are traced through the lattice by the eikonal equation, and an adjoint tracer returns the gradient of the loss.">
+      <figcaption>Feature planes and an MLP generate the coefficients of a cubic B-spline; rays are traced through it by the eikonal equation, and the adjoint tracer and a fused backward pass return the loss gradient (blue) to the planes and the MLP.</figcaption>
+    </figure>
+    <figure class="wide narrow">
+      <img src="static/images/hardware.jpg" width="2491" height="1188" loading="lazy" alt="Photographs of the three laboratory setups.">
+      <figcaption>Hardware prototypes. (a) Six synchronized cameras on an arc around a heat source, each facing a printed wavelet pattern. (b) Three cameras around a hexagonal water tank with wavelet patterns on the opposite walls; a dropper releases hot water into the tank. (c) Three color cameras look down through moving water at an object on the glass floor above a displayed wavelet pattern.</figcaption>
+    </figure>
+  </section>
+
+  <section id="schlieren">
+    <h2>Schlieren tomography</h2>
+    <p class="prose lead">Background-oriented schlieren tomography recovers a refractive-index field from the way it displaces a background pattern seen by a few cameras. We compare with the trilinear grid of Teh et al. extended to one grid per frame (Teh et al. + time), with He et al., and with Lu et al.</p>
+
+    <h3>Heated air</h3>
+    <figure class="clip">
+      <div class="tabs" role="group" aria-label="Cameras held out of training">
+        <button type="button" aria-pressed="true" data-video="air_1_held_out" data-w="2166" data-h="830">1 camera held out</button>
+        <button type="button" aria-pressed="false" data-video="air_2_held_out" data-w="2166" data-h="830">2 held out</button>
+        <button type="button" aria-pressed="false" data-video="air_3_held_out" data-w="2166" data-h="830">3 held out</button>
+      </div>
+      <video controls muted loop playsinline preload="none" width="2166" height="830" poster="static/images/posters/air_1_held_out.jpg" src="static/videos/air_1_held_out.mp4"></video>
+      <figcaption>Six cameras around a heated-air plume. The cameras marked red are held out of training. Each reconstruction is shown as a volume and as the deflection it predicts, from a camera moving along the arc.</figcaption>
+    </figure>
+
+    <h3>Hot water</h3>
+    <figure class="clip">
+      <video controls muted loop playsinline preload="none" width="1606" height="976" style="--max: 921px" poster="static/images/posters/hot_water.jpg" src="static/videos/hot_water.mp4"></video>
+      <figcaption>Hot water released into still water, seen by three cameras around a hexagonal tank. It deflects rays about five times more than the air plume. Ours is shown with a total-variation prior (weight 3e-6).</figcaption>
+    </figure>
+  </section>
+
+  <section id="water">
+    <h2>Shape through moving water</h2>
+    <p class="prose lead">Three color cameras look down through moving water at an object on the glass floor of a tank, above a displayed wavelet pattern. We recover the water surface in every frame and the object beneath it.</p>
+    <figure class="clip">
+      <div class="tabs" role="group" aria-label="Scene">
+        <button type="button" aria-pressed="true" data-video="water_octopus" data-w="2100" data-h="746" data-caption="Captured frames, the recovered water surface, and the recovered object as radiance and as normals.">Octopus</button>
+        <button type="button" aria-pressed="false" data-video="water_shell" data-w="2100" data-h="742" data-caption="Captured frames, the recovered water surface, and the recovered object as radiance and as normals.">Shell</button>
+        <button type="button" aria-pressed="false" data-video="water_castle" data-w="2100" data-h="840" data-caption="Captured frames, the recovered water surface, and the recovered object as radiance and as normals.">Castle</button>
+        <button type="button" aria-pressed="false" data-video="water_simulation" data-w="2100" data-h="726" data-caption="A simulated pumpkin under waves: the true water surface beside the recovered one, and the recovered object.">Simulation</button>
+        <button type="button" aria-pressed="false" data-video="water_in_the_wild" data-w="2130" data-h="504" data-caption="The single-camera example of Xiong and Heidrich: the water surface from their method and from ours.">In the wild</button>
+      </div>
+      <video controls muted loop playsinline preload="none" width="2100" height="746" poster="static/images/posters/water_octopus.jpg" src="static/videos/water_octopus.mp4"></video>
+      <figcaption>Captured frames, the recovered water surface, and the recovered object as radiance and as normals.</figcaption>
+    </figure>
+  </section>
+
+  <section id="grin">
+    <h2>Dynamic gradient-index optics</h2>
+    <p class="prose lead">Two simulated cases of strong refraction: recovering a theoretical time-varying Luneburg lens, and shaping a gradient-index volume that projects two videos.</p>
+
+    <h3>Growing Luneburg lens</h3>
+    <figure class="clip">
+      <video controls muted loop playsinline preload="none" width="2020" height="1074" style="--max: 1053px" poster="static/images/posters/lens.jpg" src="static/videos/lens.mp4"></video>
+      <figcaption>Parallel rays traced through each reconstruction of a Luneburg lens that grows over time. The true lens focuses them on its rim.</figcaption>
+    </figure>
+
+    <h3>Two-view caustic display</h3>
+    <figure class="clip">
+      <div class="tabs" role="group" aria-label="Display video">
+        <button type="button" aria-pressed="true" data-video="display" data-w="1280" data-h="1280" data-caption="A single 65&sup3; &times; 30 volume forms a 30-frame clip on each of two receiving planes at right angles. Left: the images it forms. Right: the targets.">Formed and target</button>
+        <button type="button" aria-pressed="false" data-video="display_training" data-w="1040" data-h="1040" data-caption="The formed images (pred) and the targets of both views at four frames, as the optimization proceeds.">During optimization</button>
+      </div>
+      <video controls muted loop playsinline preload="none" width="1280" height="1280" style="--max: 560px" poster="static/images/posters/display.jpg" src="static/videos/display.mp4"></video>
+      <figcaption>A single 65&sup3; &times; 30 volume forms a 30-frame clip on each of two receiving planes at right angles. Left: the images it forms. Right: the targets.</figcaption>
+    </figure>
+  </section>
+
+  <section id="interpolation">
+    <h2>Interpolation</h2>
+    <p class="prose lead">The same generator read out with trilinear, quadratic B-spline and cubic B-spline interpolation, on the heated-air capture.</p>
+    <figure class="clip">
+      <div class="tabs" role="group" aria-label="Cameras held out of training">
+        <button type="button" aria-pressed="true" data-video="interpolation_1_held_out" data-w="1220" data-h="830">1 camera held out</button>
+        <button type="button" aria-pressed="false" data-video="interpolation_2_held_out" data-w="1220" data-h="830">2 held out</button>
+        <button type="button" aria-pressed="false" data-video="interpolation_3_held_out" data-w="1220" data-h="830">3 held out</button>
+      </div>
+      <video controls muted loop playsinline preload="none" width="1220" height="830" style="--max: 823px" poster="static/images/posters/interpolation_1_held_out.jpg" src="static/videos/interpolation_1_held_out.mp4"></video>
+    </figure>
+  </section>
+
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <div class="bibtex prose">
+      <button type="button" class="copy" data-copy="#bibtex-entry">Copy</button>
+      <pre id="bibtex-entry">@misc{vengurlekar2026eikonalsplines,
+  title  = {Eikonal Splines: Efficient Inverse Rendering of
+            Time-Varying Refractive Media},
+  author = {Vengurlekar, Omkar and Kubo, Hiroyuki and Jayasuriya, Suren},
+  year   = {2026},
+  note   = {Preprint}
+}</pre>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Code and data will be made available shortly.</p>
+</footer>
+
+</body>
+</html>
