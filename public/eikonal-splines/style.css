@@ -221,6 +221,68 @@ figcaption {
   color: #fff;
 }
 
+/* interactive volumes */
+
+.viewer .stage {
+  position: relative;
+  max-width: 56rem;
+  aspect-ratio: 16 / 9;
+  max-height: min(31rem, 64vh);
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.viewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+.viewer canvas:active { cursor: grabbing; }
+.viewer.unsupported :is(.tabs, .transport, canvas) { display: none; }
+.viewer.unsupported .stage { aspect-ratio: auto; padding: 2rem 1rem; }
+.viewer.unsupported .status { position: static; }
+
+.viewer .status {
+  position: absolute;
+  inset: auto 0 0.8rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.transport {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 56rem;
+  margin: 0.75rem auto 0;
+}
+
+.transport button {
+  padding: 0.32rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.transport button:hover { border-color: var(--accent); color: var(--accent); }
+.transport .play { min-width: 4.4rem; }
+.transport .time { flex: 1 1 10rem; min-width: 8rem; accent-color: var(--accent); }
+.transport .clock { min-width: 3.6rem; color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; text-align: right; }
+
 /* citation */
 
 .bibtex { position: relative; }
@@ -255,6 +317,7 @@ footer p { margin: 0; }
   main > .wide { padding: 1.75rem 1rem 0; }
   .toc { justify-content: flex-start; }
   .bibtex pre { padding-top: 2.6rem; }
+  .viewer .stage { aspect-ratio: 1; max-height: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
